@@ -1,0 +1,123 @@
+body{
+    font-size: 20pt;
+}
+
+/* расположение элементов в ряд, с выравниванием по вертикали по центру и пробелом между logo и списком */
+.top-nav { 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #00BAF0;
+  color: black;
+  padding: 10px;
+  height: auto;
+  border: 1px solid #333;
+}
+
+/* элементы списка в ряд */
+.menu {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-button,
+.menu-button::before,
+.menu-button::after {
+  display: block;
+  background-color: black;
+  position: absolute;
+  height: 4px;
+  width: 30px;
+  transition-duration: .25s;
+
+}
+
+.menu > li {
+    margin: 0 10px;
+}
+
+/* спрятать checkbox */
+#menu-toggle {
+  display: none;
+}
+
+#menu-toggle:checked + .menu-button-container .menu-button::before {
+  margin-top: 0px;
+  transform: rotate(405deg);
+  background-color: red;
+}
+
+#menu-toggle:checked + .menu-button-container .menu-button {
+  background: rgba(255, 255, 255, 0);
+}
+
+#menu-toggle:checked + .menu-button-container .menu-button::after {
+  margin-top: 0px;
+  transform: rotate(-405deg);
+  background-color: red;
+}
+
+.menu-button-container {
+  display: none;
+  height: 100%;
+  width: 30px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-button::before {
+  content: '';
+  margin-top: -8px;
+}
+
+.menu-button::after {
+  content: '';
+  margin-top: 8px;
+}
+
+@media (max-width: 700px) {
+  .menu-button-container {
+    display: flex;
+  }
+  .menu {
+    position: absolute;
+    top: 0;
+    margin-top: 58px;
+    left: 9px;
+    right: 9px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+
+  }
+
+  #menu-toggle ~ .menu li {
+    visibility: hidden;
+  }
+  
+  #menu-toggle:checked ~ .menu li {
+    display: flex;
+    border: 1px solid #333;
+    height: auto;
+    visibility: visible;
+  }
+  .menu > li {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+    color: black;
+    background-color: #00BAF0;
+  }
+
+}
+
+
+

@@ -1,0 +1,24 @@
+
+
+input:valid{
+    background-color: rgb(187, 239, 187);
+}
+input:invalid{
+    background-color: rgb(243, 163, 163);
+}
+input:valid:focus{
+    background-color: rgb(121, 154, 121);
+}
+input:invalid:focus{
+    background-color: rgb(175, 116, 116);
+}
+::placeholder{
+    font-style: italic;
+    color: blue;
+}
+
+p, fieldset{
+    font-size: large;
+    margin: 30px;
+}
+

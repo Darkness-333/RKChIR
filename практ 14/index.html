@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div id="contents">
+    <a href="https://google.com">Ссылка 1</a>
+    <a href="https://google.com">Ссылка 2 <i>с вложением</i></a>
+    <p>
+        Текст с ссылкой: <a href="https://google.com">Ссылка 3 <i>с вложением <strong> двойным</strong></i></a>
+    </p>
+    
+</div>
+
+<script>
+    document.getElementById('contents').addEventListener('click', function (event) {
+        console.log(event.target.closest('a'))
+        if(event.target.closest('a')){
+            var isConfirmed = confirm('Вы уверены, что хотите покинуть страницу?');
+            if (!isConfirmed) {
+                event.preventDefault();
+            }
+        }
+
+    });
+</script>
+
+<style>
+
+    #mainImage {
+        max-width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    .thumbnail {
+        max-width: 100%;
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+</style>
+
+<div id="gallery">
+    <img width="500" height="500" id="mainImage" src="curi1.jpg" alt="Main Image">
+    <div id="thumbnails">
+        <img class="thumbnail" src="curi1.jpg" alt="Thumbnail 1">
+        <img class="thumbnail" src="curi2.jpg" alt="Thumbnail 2">
+        <img class="thumbnail" src="darwin1.jpg" alt="Thumbnail 3">
+    </div>
+</div>  
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var mainImage = document.getElementById('mainImage');
+        var thumbnails = document.getElementById('thumbnails');
+
+        thumbnails.addEventListener('click', function (event) {
+            if (event.target.tagName === 'IMG') {
+                mainImage.src = event.target.src;
+                mainImage.alt = event.target.alt;
+            }
+        });
+    });
+</script>
+
+<style>
+    .selected {
+        background-color: #3498db;
+        color: #fff;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    li {
+        cursor: pointer;
+        padding: 8px;
+        margin: 4px;
+        border: 1px solid #ddd;
+        user-select: none; /* Предотвращаем стандартное выделение текста */
+    }
+</style>
+
+<ul id="selectableList">
+    <li>Элемент 1</li>
+    <li>Элемент 2</li>
+    <li>Элемент 3</li>
+</ul>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var list = document.getElementById('selectableList');
+        var items = list.getElementsByTagName('li');
+
+        list.addEventListener('click', function (event) {
+            if (event.target.tagName === 'LI') {
+                var isCtrlPressed = event.ctrlKey || event.metaKey;
+                event.target.classList.toggle('selected');
+                if (!isCtrlPressed) {
+                    for (var i = 0; i < items.length; i++) {
+                        if (items[i] !== event.target) {
+                            items[i].classList.remove('selected');
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+<style>
+    #slider-container {
+        width: 300px;
+        margin: 50px auto;
+    }
+
+    #slider {
+        width: 100%;
+        height: 20px;
+        background-color: #ddd;
+        position: relative;
+        cursor: pointer;
+    }
+
+    #slider-handle {
+        width: 20px;
+        height: 20px;
+        background-color: #3498db;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: grab;
+    }
+</style>
+
+<div id="slider-container">
+    <div id="slider">
+        <div id="slider-handle"></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var slider = document.getElementById('slider');
+        var handle = document.getElementById('slider-handle');
+
+        var isDragging = false;
+
+        handle.addEventListener('mousedown', function (event) {
+            isDragging = true;
+            handle.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mouseup', function () {
+            isDragging = false;
+            handle.style.cursor = 'grab';
+        });
+
+        document.addEventListener('mousemove', function (event) {
+            if (isDragging) {
+                moveHandle(event.clientX);
+            }
+        });
+
+        slider.addEventListener('click', function (event) {
+            moveHandle(event.clientX);
+        });
+
+        function moveHandle(clientX) {
+            var sliderRect = slider.getBoundingClientRect();
+            var handleX = clientX - sliderRect.left;
+
+            handleX = Math.max(0, Math.min(handleX, sliderRect.width));
+
+            handle.style.left = handleX - handle.offsetWidth / 2 + 'px';
+        }
+    });
+</script>
+
+
+
+<style>
+    #element1 {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        margin-bottom: 20px;
+    }
+
+    #element2 {
+        width: 100px;
+        height: 100px;
+        background-color: rebeccapurple;
+    }
+</style>
+
+<div id="element1"></div>
+<div style="height: 160px;">
+
+    <div id="element2"></div>
+</div>
+
+<script>
+    var element1 = document.getElementById('element1');
+    setInterval(function () {
+        element1.style.backgroundColor = getRandomColor();
+    }, 1000);
+
+    var element2 = document.getElementById('element2');
+    var growing = true;
+    var size=50;
+    function animateSize() {
+        if (growing) {
+            size +=0.5;
+            if (size >= 150) {
+                growing = false;
+            }
+        } else {
+            size -= 0.5;
+            if (size <= 50) {
+                growing = true;
+            }
+        }
+
+        element2.style.width = size + 'px';
+        element2.style.height = size + 'px';
+        requestAnimationFrame(animateSize);
+    }
+
+    animateSize();
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+</script>
+
+
+
+<style>
+    #cart {
+        width: 400px;
+        border: 2px solid #333;
+        padding: 10px;
+        float: left;
+        margin-right: 20px;
+    }
+
+    #cart h2 {
+        text-align: center;
+    }
+
+    #products {
+        float: left;
+    }
+
+    .product {
+        width: 100px;
+        height: 100px;
+        border: 2px solid #333;
+        margin: 10px;
+        display: inline-block;
+        cursor: move;
+    }
+
+    .product img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
+
+<div id="cart">
+    <h2>Корзина</h2>
+    <p>Итог: <span id="totalPrice">0</span> руб.</p>
+</div>
+
+<div id="products">
+    <div class="product" draggable="true" data-price="500">
+        <p>Товар 1 - 500 руб.</p>
+    </div>
+    <div class="product" draggable="true" data-price="700">
+        <p>Товар 2 - 700 руб.</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var cart = document.getElementById('cart');
+        var products = document.getElementById('products');
+        var totalPriceElement = document.getElementById('totalPrice');
+        var totalPrice = 0;
+
+        var draggedElement;
+
+        products.addEventListener('dragstart', function (event) {
+            event.dataTransfer.setData('text/plain', event.target.dataset.price);
+            draggedElement=event.target;
+        });
+
+        cart.addEventListener('dragover', function (event) {
+            event.preventDefault();
+        });
+
+        cart.addEventListener('drop', function (event) {
+            event.preventDefault();
+            var price = parseInt(event.dataTransfer.getData('text/plain'), 10);
+            totalPrice += price;
+            totalPriceElement.textContent = totalPrice;
+            cart.appendChild(draggedElement.cloneNode(true));
+
+        });
+    });
+</script>
+
+</body>
+</html>

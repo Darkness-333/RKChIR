@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #element1 {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin-bottom: 20px;
+        }
+
+        #element2 {
+            width: 100px;
+            height: 100px;
+            background-color: rebeccapurple;
+        }
+    </style>
+    <title>JavaScript Animations</title>
+</head>
+<body>
+
+<div id="element1"></div>
+<div id="element2"></div>
+
+<script>
+    // Анимация 1: Мигание фонового цвета
+    var element1 = document.getElementById('element1');
+    setInterval(function () {
+        element1.style.backgroundColor = getRandomColor();
+    }, 1000);
+
+    // Анимация 2: Плавное изменение размера
+    var element2 = document.getElementById('element2');
+    var growing = true;
+    var size=50;
+    function animateSize() {
+        // var size = parseInt(getComputedStyle(element2).width);
+        // size=100;
+        if (growing) {
+            size +=0.5;
+            if (size >= 150) {
+                growing = false;
+            }
+        } else {
+            size -= 0.5;
+            if (size <= 50) {
+                growing = true;
+            }
+        }
+
+        element2.style.width = size + 'px';
+        element2.style.height = size + 'px';
+        requestAnimationFrame(animateSize);
+    }
+
+    animateSize();
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+</script>
+
+</body>
+</html>

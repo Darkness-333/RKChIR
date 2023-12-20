@@ -1,0 +1,483 @@
+/* task1 */
+:root{
+    --div-width: 100px;
+    --div-height: 200px;
+}
+
+.hover_div{
+    display: inline-block;
+    width: calc(var(--div-width));
+    height: var(--div-height);
+    margin-left: 50px;
+    position: relative;
+}
+
+.t1{
+    width: var(--div-width);
+    height: var(--div-height);
+    border-radius: 10px;
+    background: linear-gradient(145deg, red, orange);
+    display: inline-block;
+    filter: drop-shadow(1px 1px 10px linear-gradient(145deg, red, orange));  
+    backface-visibility: hidden;
+    transition: all .2s ease-in-out;
+    transform: skewX(20deg);
+    position: relative;
+
+}
+.t1::before{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: var(--div-width);
+    height: var(--div-height);
+    background: linear-gradient(145deg, red, orange);
+    filter: blur(20px);
+}
+
+#c2, #c2::before{
+    background: linear-gradient(145deg, purple 30%, blue);
+}
+
+
+#c3, #c3::before{
+    background: linear-gradient(145deg,  aqua, greenyellow);
+}
+
+.hover_div:hover > .t1{
+    transform: skewX(0);
+    transition: all .2s ease-in-out;
+}
+
+.hover_div:hover > .text_div::before{
+    transform: scaleY(1.5);
+    transition: all .2s ease-in-out;
+}
+
+h2{
+    margin:0px;
+}
+
+.text_div{
+    transform: skewX(0);
+    color: white;
+    position: absolute;
+    font-size: 12pt;
+    width: 150px;
+    height: 100px;
+    top: 50px;
+    left: -30px;
+}
+
+.text_div::before{
+    content: "";
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(69, 67, 67);
+    opacity: 70%;
+    z-index: -1;
+    border-radius: 5px;
+    transition: all .2s ease-in-out;
+}
+
+.cubes::before{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(69, 67, 67);
+    opacity: 70%;
+    z-index: 1;
+    border-radius: 5px;
+    top:20px;
+    left:0;
+}
+
+.cubes::after{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(69, 67, 67);
+    opacity: 70%;
+    z-index: 1;
+    border-radius: 5px;
+    bottom:20px;
+    right:0;
+}
+
+.hover_div:hover .cubes::before{
+    content: "";
+    animation: cubes1 2s infinite alternate ease-in-out;
+}
+
+.hover_div:hover .cubes::after{
+    content: "";
+    animation: cubes2 2s infinite alternate ease-in-out;
+}
+
+@keyframes cubes1 {
+    from{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(-70px);
+    }
+    to{
+        transform: translateY(-70px) rotate(-180deg);
+    } 
+}
+
+@keyframes cubes2 {
+    from{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(70px);
+    }
+    to{
+        transform: translateY(70px) rotate(180deg);
+    }
+}
+
+/* task2 */
+
+.task2{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.social-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.social-links a{
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 20px;
+    border-radius: 40px;
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.social-links a img{
+    position: relative;
+    z-index: 10;
+}
+.social-links a::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, red, yellow);
+    position: absolute;
+    top: -90px;
+    left: 0px;
+    transition: 0.5s;
+    z-index: 0;
+}
+
+.social-links a#l1::after{
+    background: linear-gradient(-45deg, rgb(90, 90, 240), rgb(2, 2, 102));
+}
+.social-links a#l2::after{
+    background: linear-gradient(-45deg, rgb(246, 70, 70), rgb(112, 3, 3));
+}
+
+.social-links a#l3::after{
+    background: linear-gradient(-45deg, rgb(225, 46, 225), purple);
+}
+
+.social-links a:hover::after{
+    top: 0px;
+}
+.social-links a:hover{
+    cursor: cell;
+}
+
+/* task3 */
+
+input {
+    color: black;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid;
+}
+form{
+    margin: 10rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.2);
+    background-color: 	rgba(255, 255, 255, 0.2);
+    width: 300px;
+    height: 350px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    padding-left: 50px;
+    position: relative;
+    z-index: 100;
+}
+.task3 {
+    position: relative;
+    /* left: 10%; */
+    width: 600px;
+    height: auto;
+    color: white;
+}
+
+p a{
+    text-decoration: none;
+    color: orange;
+}
+
+form .input{
+    margin: 10px 0;
+}
+.quad{
+    position: absolute;
+    border-radius: 10px;
+    background-color: rgb(129, 128, 128);
+    animation: blocks-task3 6s infinite;
+    animation-delay: calc(-1s * var(--i1));
+}
+.quad#b1{
+    width: 40px;
+    height: 40px;
+    top: 40px;
+    right: 0px;
+    --i1: 1;
+}
+.quad#b2{
+    width: 100px;
+    height: 100px;
+    left: 0px;
+    top: 70px;
+    --i1: 2;
+}
+.quad#b3{
+    width: 60px;
+    height: 60px;
+    bottom: 0px;
+    left: 100px;
+    --i1: 3;
+}
+.quad#b4{
+    width: 70px;
+    height: 70px;
+    right: 70px;
+    top: 350px;
+    --i1: 4;
+
+}
+@keyframes blocks-task3{
+    0%, 100%{
+        transform: translateY(-60px);
+    }
+    50%{
+        transform: translateY(0px);
+    }
+}
+
+
+/* task4 */
+.card4{
+    position: relative;
+    width: 200px;
+    height: 300px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.container4:hover .card4{
+    filter: blur(20px);
+    transform: scale(0.9);
+    opacity: 0.5;
+}
+
+.container4 .card4:hover{
+    filter: blur(0);
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.card4 .circle{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    clip-path: circle(120px at center 0);
+}
+
+.circle h2{
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 30pt;
+}
+
+.card4 .content{
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    padding: 20px;
+}
+
+
+
+.card4 .content a{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background: black;
+    color: white;
+    border-radius: 40px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.card4:nth-child(1) .circle, .card4:nth-child(1) .content a{
+    background: rgb(255, 149, 0);
+}
+
+.card4:nth-child(2) .circle, .card4:nth-child(2) .content a{
+    background: rgb(202, 10, 74);
+
+}
+.card4:nth-child(3) .circle, .card4:nth-child(3) .content a{
+    background: rgb(184, 10, 184);
+
+}
+
+
+
+/* task5 */
+
+.card5{
+    position: relative;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.card5::before{
+    position: absolute;
+    width: 40%;
+    height: 120%;
+    background-color: white;
+    background: linear-gradient(90deg,rgb(2, 2, 150),rgb(69, 69, 235));
+
+}
+
+.card5:hover::before{
+    content: "";
+    animation: animate 3s linear infinite;
+
+}
+
+.card5::after{
+    content: "";
+    position: absolute;
+    inset: 5px;
+    background-color: black;
+    border-radius: 16px;
+}
+
+
+@keyframes animate {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+    
+}
+
+.left{
+    width: 50%;
+    height: calc(100% - 10px);
+    background-color: rgb(53, 21, 113);
+    z-index: 1;
+    margin-left: 5px;
+    border-radius: 16px 0 0 16px;
+
+}
+
+.right{
+    width: 50%;
+    height: calc(100% - 10px);
+    background-color: rgb(17, 12, 87);
+    z-index: 1;
+    margin-right: 5px;
+    border-radius: 0 16px 16px 0;
+}
+
+.content2{
+    position: absolute;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    
+}
+
+.content2 a{
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    background: white;
+    color: black;
+    text-decoration: none;
+}
+
+.content2::after{
+    content: "01";
+    font-size: 30pt;
+    font-weight: bolder;
+    color: rgb(85, 142, 255);
+    position: inherit;
+    top:-50px;
+    right: 50px;
+    opacity: 0;
+    transition: 1s;
+}
+
+.card5:hover .content2::after{
+    opacity: 1;
+    transition: 1s;
+}
+
+.container5:hover .card5{
+    opacity: 0.5;
+
+}
+
+.container5 .card5:hover{
+    opacity: 1;
+
+}
+
+.card5:nth-child(2) .content2::after {
+    content: "02";
+}
+
+.card5:nth-child(3) .content2::after {
+    content: "03";
+}

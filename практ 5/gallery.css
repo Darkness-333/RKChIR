@@ -1,0 +1,42 @@
+body{
+    margin: 0 50px;
+}
+
+.container{
+    width: 300px; 
+    height: 300px; 
+    padding: 10px;
+    background-color: #03cf39; 
+    border: 3px solid black;
+    flex-grow: 1;
+    margin: 5px;
+}
+
+img{
+
+    width: 200px;
+    height: 300px;
+}
+
+div img{
+    /* flex-basis: 30%; */
+    flex-grow: 1;
+    margin: 5px;
+    /* flex-shrink: 2; */
+}
+
+@media (min-width:1000px) {
+    img{
+
+        width: 300px;
+        height: 400px;
+    }
+}
+
+@media (max-width:550px) {
+    img{
+
+        width: 100px;
+        height: 200px;
+    }
+}

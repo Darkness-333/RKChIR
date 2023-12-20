@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" async></script>
+    </head>
+    <body>
+        <div>
+
+            <div class="manage">
+                От
+                <input id="from">
+            </div>
+
+            <div class="manage">
+                До
+                <input id="to">
+            </div>
+
+            <div class="manage">
+                Сортировать по
+                <select id="sort">
+                <option value="not sort">Не сортировать</option>
+
+                <option value="increse">Возрастанию</option>
+
+                <option value="decrese">Убыванию</option>
+                    
+                </select>
+            </div>
+
+            <div class="manage">
+                <button id="add">Добавить элемент</button>
+                <input id="price" placeholder="Введите стоимость">
+            </div>
+
+            <div class="manage">
+                <button id="del">Удалить элемент</button>
+            </div>
+
+            <div class="manage">
+                <button id="clear">Очистить</button>
+            </div>
+
+        </div>
+        <div id="container" class="container">
+            <div class="element">
+                103
+            </div>
+            <div class="element">
+                964
+            </div>
+            <div class="element">
+                345
+            </div>
+            <div class="element">
+                563
+            </div>
+            <div class="element">
+                397
+            </div>
+        </div>
+        <p id="sumElem">Сумма: 0</p>
+    </body>
+</html>

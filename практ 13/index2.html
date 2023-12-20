@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<head>
+
+    <style>
+body{
+font-size: 20pt;
+}
+
+.notification{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: aquamarine;
+    text-align: center;
+    
+
+}
+
+#countNotif{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
+.list{
+    width: 250px;
+    background-color: aquamarine;
+    
+}
+
+.listDiv{
+    display: none;
+    position: absolute;
+    top:50px;
+    z-index: 1;
+    transition: opacity 0.5s;
+}
+    </style>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 200vh; 
+        font-family: 'Arial', sans-serif;
+        overflow-x: hidden;
+    }
+
+    .parallax-container {
+        height: 200vh;
+        background-image: url('img.jpg'); 
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+    }
+
+    .parallax-content {
+        z-index: 1;
+    }
+</style>
+</head>
+<body>
+    <div class="notification" id="notif">
+        <span id="countNotif">10</span>
+        <div class="listDiv" id="listDiv"></div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax-content">
+            <h1>Параллакс эффект</h1>
+            
+        </div>
+    </div>
+
+    <div id="content" class="content">
+        <p>Начальное содержимое...</p>
+      </div>
+    
+      <script>
+        function handleScroll() {
+          var contentDiv = document.getElementById('content');
+          var windowHeight = window.innerHeight; // Высота видимой части окна браузера
+          var scrollY = window.scrollY || window.pageYOffset; // Прокрученная часть страницы
+    
+          if (scrollY + windowHeight >= contentDiv.offsetHeight) {
+            var newParagraph = document.createElement('p');
+            newParagraph.textContent = 'Дополнительное содержимое...';
+            contentDiv.appendChild(newParagraph);
+          }
+        }
+    
+        window.addEventListener('scroll', handleScroll);
+    
+        document.addEventListener('DOMContentLoaded', function () {
+          handleScroll();
+        });
+      </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var parallaxContainer = document.querySelector(".parallax-container");
+
+            window.addEventListener("scroll", function() {
+                var scrollPosition = window.scrollY;
+                parallaxContainer.style.backgroundPositionY = -scrollPosition * 0.5 + "px";
+            });
+        });
+    </script>
+
+    <script>
+        listDiv.addEventListener('click', function(event) {
+            if (event.target.classList.contains('delete-btn')) {
+                var elem=event.target;
+                var listItem = event.target.closest('.list');
+                console.log(listItem);
+                if (listItem) {
+                    listItem.remove();
+                }
+            }
+        });
+    </script>
+
+    <script>
+        function decor(func){
+            return function(){
+                if(!isPaused){
+                    isPaused = true;
+                    setTimeout(function(){
+                        isPaused = false;
+                    }, 5000);
+                }
+                func();
+            }
+        }
+        
+        var isPaused=false;
+        
+        let notifNumber=0;
+        countNotif.textContent=0;
+        let timer=function(){
+            if(notifNumber>=15){
+                clearInterval(interval);
+                return;
+            }
+            if(!isPaused){
+                notifNumber++;
+                countNotif.textContent=notifNumber;
+                let elem=document.createElement('div');
+                elem.className="list";
+                elem.textContent="Notification "+notifNumber;
+                var closeButton = document.createElement('span');
+                closeButton.className = 'delete-btn';
+                closeButton.innerHTML = '✖';
+                elem.appendChild(closeButton);
+                listDiv.append(elem);
+            }
+        }
+        var interval=setInterval(timer,1000);      
+        timer=decor(timer);
+        let counter=0;
+        notif.onclick=function(){
+            if(counter==0){
+                timer();
+                listDiv.style.display="block"
+            }
+            else{
+                listDiv.style.display="none"
+        
+            }
+            counter=(counter+1)%2;
+        }
+        
+        listDiv.onclick=function(event){
+            event.stopPropagation();
+        }
+        </script>
+</body>
+</html>

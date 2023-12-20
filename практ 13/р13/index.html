@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+    <a href="index2.html">Следующая страница</a>
+    <div id="centeredContainer"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var centeredImage = document.createElement("img");
+            centeredImage.src = "favicon.png";
+
+            centeredImage.alt = "Centered Image";
+
+            document.getElementById("centeredContainer").appendChild(centeredImage);
+
+            centeredImage.onload = function() {
+                centeredImage.style.position = "absolute";
+                centeredImage.style.maxWidth = "80%";
+                centeredImage.style.maxHeight = "80%";
+
+                var imageWidth = centeredImage.width;
+                var imageHeight = centeredImage.height;
+
+                var centerX = window.innerWidth / 2 - imageWidth / 2;
+                var centerY = window.innerHeight / 2 - imageHeight / 2;
+
+
+                centeredImage.style.left = centerX + "px";
+                centeredImage.style.top = centerY + "px";
+
+                centeredImage.addEventListener("click", function(event) {
+                    var x = event.clientX;
+                    var y = event.clientY;
+
+                    console.log("Координаты клика: x =", x, "y =", y);
+                    alert("Координаты клика: x = "+ x+ ", y = "+ y);
+                });
+            };
+        });
+    </script>
+</body>
+</html>

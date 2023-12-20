@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+
+header, footer{
+    font-size: 20px;
+}
+
+img{
+
+    margin-right: 20px;
+}
+
+aside {
+    width: 40%;
+    font-size: 20px;
+    padding-left: 10px;
+
+    float: right;
+    /* box-shadow: inset 5px 0 5px -5px #c32810; */
+    font-style: italic;
+    border: 1px solid #c32810;
+
+}
+
+a{
+    text-decoration: none;
+}
+
+a:visited{
+    color: #c32810
+
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+a:active{
+    color: green;
+
+
+}
+
+.maria{
+    font-family: 'Amatic SC' ,cursive;
+}
+
+aside ~ p{
+    color: coral;
+}

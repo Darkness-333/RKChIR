@@ -1,0 +1,130 @@
+@keyframes circle-to-square {
+    from{
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+    }
+    50%{
+        width: 50px;
+        height: 200px;
+    }
+    to{
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@keyframes color-change {
+    from{
+
+        background-color: red;
+    }
+    50%{
+        background-color: purple;
+    }
+    to{
+        background-color: blue;
+    }
+}
+@keyframes rotateX {
+    from{
+
+        
+    }
+
+    to{
+        transform: rotateX(90deg);
+        /* transform: rotate(180deg); */
+    }
+}
+
+@keyframes rotateY {
+    from{
+
+        
+    }
+
+    to{
+        transform: rotateY(270deg);
+        /* transform: rotate(180deg); */
+    }
+}
+
+@keyframes rotate {
+    from{
+
+        
+    }
+    30%{
+        
+        /* transform: rotate(360deg) rotateY(90deg); */
+    }
+    60%{
+        transform: rotate(-450deg) rotateX(90deg) ;
+        /* transform: rotateY(90deg); */
+        /* transform: rotate(-45deg); */
+
+        /* transform: rotateY(90deg); */
+
+    }
+
+    to{
+        transform:rotate(180deg) rotateY(90deg) ;
+        /* transform: rotate(180deg); */
+    }
+}
+
+.child{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 25px;
+
+}
+
+.child2{
+    animation-name: circle-to-square, color-change;
+    width: 50px;
+    height: 50px;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    /* animation-timing-function: cubic-bezier(); */
+    animation-delay: -1s;
+    animation-play-state: paused;
+
+}
+
+.child2:hover{
+    animation-play-state: paused;
+}
+
+.child:hover{
+    animation-name: circle-to-square,color-change;
+    animation-duration: 2s, 6s;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+
+    /* animation-fill-mode: both; */
+
+}
+
+.child3{
+    background-color: orange;
+    width: 100px;
+    height: 100px;
+}
+
+.child3:hover{
+    animation-name: rotate;
+    animation-fill-mode: both;
+    animation-duration: 5s;
+    background-color: orange;
+    width: 100px;
+    height: 100px;
+    /* transform: translate(100px,-100px) skewX(20deg) rotateX(180deg);
+    transition: position 5s; */
+    /* transition-duration: 5s; */
+    
+}
