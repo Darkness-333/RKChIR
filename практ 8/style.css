@@ -1,0 +1,247 @@
+body{
+    font-size: 20pt;
+    margin: 0;
+}
+
+.t1{
+    /* --height: 100px; */
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 10vh 10vh 70vh 10vh;
+    grid-auto-flow: dense;
+}
+
+.header, .navigation{
+    grid-column-start: span 2;
+}
+
+.main{
+    grid-column-start: 2;
+}
+
+.elem{
+    margin: 5px;
+    background-color: white;
+    width: auto;
+    height: auto;
+    border: red solid 5px;
+}
+
+
+@media (max-width: 500px) {
+    .t1{
+        /* --height: 90px; */
+        /* grid-template-rows: repeat(2, var(--height)) calc(var(--height)*3)  repeat(3, var(--height)); */
+        grid-template-rows: repeat(2, 10vh) 50vh  repeat(3, 10vh);
+        grid-template-columns: 100%;
+        grid-auto-flow: column;
+    }
+    .main{
+        grid-column-start: 1;
+    }
+    .header, .navigation{
+        grid-column-start: 1;
+    }
+}
+
+@media (min-width: 1000px) {
+    .t1{
+        grid-template-columns: [col1]20% [col2]60% [col3]20%;
+        grid-template-rows: [row1]10vh [row2]10vh [row3]70vh [row4]10vh;
+    }
+    .header, .footer{
+        grid-column-start: span 3;
+    }
+    .sidebar, .ads{
+        grid-row-start: span 2;
+    }
+    .navigation{
+        grid-column-start: col2;
+    }
+}
+
+.t2{
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(3, calc(100vh / 3));
+    /* gap: 10px 10px;
+    margin: 0 5px; */
+}
+
+.elem2{
+    margin: 5px;
+    background-color: rgb(58, 54, 54);
+    color: white;
+    width: auto;    
+    height: auto;
+    border: red solid 5px;
+    text-align: center;
+    transition: 0.5s;
+
+}
+
+.elem2:hover{
+    background-color: rgb(215, 8, 98);
+    transition: 0.5s;
+}
+
+.elem2 > p{
+    margin: 0;
+    margin-top: -0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.elem2:nth-child(1){
+    grid-column-start: span 2;
+}
+
+.elem2:nth-child(2), .elem2:nth-child(4){
+    grid-row-start: span 2;
+}
+
+.elem2:nth-child(7){
+    grid-column-start: span 3;
+}
+
+
+
+.t3{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20pt 50px;
+    padding: 30px;
+    @media (max-width:712px) {
+    grid-template-columns: 1fr;
+        
+    }
+
+
+}
+
+input[type="submit"]{
+    font-size: 20pt ;
+    background-color: rgb(11, 239, 255);
+    border-radius: 5px;
+    padding: 5px;
+    width: auto;
+    margin: 30px;
+    margin-top: 0;
+}
+
+label:nth-child(5){
+    grid-column-start: span 2;
+}
+
+.t3 div{
+    position: relative;
+}
+
+label{
+    /* font-size: 20pt; */
+    opacity: 0;
+    color: white;
+    position: absolute;
+    bottom:10px;
+    left:10px;
+
+    font-family: 'Courier New', Courier, monospace;
+    transform: translateY(0);
+
+    transition: 1s; 
+
+}
+
+
+input[type="text"]:focus + label{
+    opacity: 1;
+    transform: translateY(-25pt);
+    font-size: 20pt;
+    transition: transform 1s; 
+
+}
+
+input[type="text"]{
+    border-width: 0;
+    border-bottom-width: 2px;
+    border-color: rgb(23, 209, 226);
+    width: 100%;
+    background-color: black;
+    height: 20pt;
+    margin: 10px;
+    color: white;
+    font-size: 20pt;
+
+
+}
+
+input[type="text"]:focus{
+    background-color: rgb(11, 239, 255);
+    font-size: 20pt;
+    border-width: 0;
+    color: black;
+
+    
+}
+
+
+
+input[type="text"]:focus::placeholder{
+    font-size: 0;
+}
+
+
+
+input[type="text"]::placeholder{
+    font-size: 20pt;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+
+
+}
+
+form{
+    background-color: black;
+
+}
+
+
+
+
+
+.t4{
+    padding: 50px;
+    background-color: rgb(61, 87, 218);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px 25px;
+
+    @media (min-width:1001px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media (max-width:768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+span{
+    display: block;
+    color: white;
+    transition: 0.5s;
+
+}
+
+.first{
+    font-size: 25pt;
+    text-decoration: underline;
+    text-decoration-color: yellow;
+}
+
+span:hover:not(.first, .t4 div:nth-child(1) span){
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
